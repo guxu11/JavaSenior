@@ -6,8 +6,22 @@ import org.junit.Test;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.LinkedList;
 
 public class ReflectionTest {
+    @Test
+    public void test() {
+       float f = 1.2f;
+       double d = 1.2d;
+       int ab = 010;
+        System.out.println(ab);
+        f++;
+       d+=1;
+        System.out.println(d);
+        System.out.println(f);
+        String a = "100";
+        System.out.println(Character.isDigit(a.charAt(0)));
+    }
     @Test
     public void testField() throws Exception {
         Class clazz = Person.class;

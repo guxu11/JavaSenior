@@ -7,6 +7,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.TreeMap;
 
+/*
+leetcode 51 N皇后1
+ */
 public class NQueen {
     private List<List<String>> res = new ArrayList<>();
     public List<List<String>> solveNQueens(int n) {

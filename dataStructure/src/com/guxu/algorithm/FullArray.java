@@ -1,10 +1,14 @@
 package com.guxu.algorithm;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import org.testng.annotations.Test;
 
+/*
+leetcode 46 全排列1， 数组没有重复元素
+ */
 public class FullArray {
     private List<List<Integer>> res = new ArrayList<>();
     public List<List<Integer>> permute(int[] nums) {
@@ -40,5 +44,7 @@ public class FullArray {
             l1.add(i);
         }
         System.out.println(new LinkedList<Integer>(l1));
+        int[] nums = {1,2,3};
+        System.out.println(Arrays.copyOfRange(nums, 0, 0).length);
     }
 }

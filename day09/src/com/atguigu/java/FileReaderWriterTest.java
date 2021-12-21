@@ -2,10 +2,7 @@ package com.atguigu.java;
 
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class FileReaderWriterTest {
     /*
@@ -69,9 +66,52 @@ public class FileReaderWriterTest {
             }
         }
     }
-    public static void main(String[] args) {
-        File file = new File("day09/hello");
-        System.out.println(file.getAbsolutePath());  // 对于当前整个工程
+    /*
+    写出数据到硬盘的文件里
+     */
+    @Test
+    public void testFileWriter() throws Exception{
+        File file = new File("hello1");
+        FileWriter fw = new FileWriter(file, true);
+        fw.write("I have a dream!!!!!!!!!!\n");
+        fw.write("you also have a dream!!!!!!!!!!!!");
+        fw.close();
     }
+
+    @Test
+    public void testCopyFile() {
+        FileWriter fw = null;
+        FileReader fr = null;
+        try {
+            File srcFile = new File("hello");
+            File desFile = new File("hello2");
+            fr = new FileReader(srcFile);
+            fw = new FileWriter(desFile);
+            char[] cbuf = new char[5];
+            int len;
+            // 每次写出len个字符
+            while ((len = fr.read(cbuf)) != -1) fw.write(cbuf, 0, len);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fw != null) {
+                try {
+                    fw.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (fr != null) {
+                try {
+                    fr.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+
 
 }

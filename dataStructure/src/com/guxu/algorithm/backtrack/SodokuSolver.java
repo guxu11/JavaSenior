@@ -1,4 +1,4 @@
-package com.guxu.algorithm;
+package com.guxu.algorithm.backtrack;
 
 import org.testng.annotations.Test;
 import java.lang.Math;

@@ -1,4 +1,4 @@
-package com.guxu.algorithm;
+package com.guxu.algorithm.backtrack;
 
 import java.util.ArrayList;
 import java.util.Arrays;

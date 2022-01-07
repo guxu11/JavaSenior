@@ -4,9 +4,11 @@ import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-/*
+
+/**
 216. 组合总和 III
  */
+
 public class Combine4 {
     private List<List<Integer>> res= new ArrayList<>();
     public List<List<Integer>> combinationSum3(int k, int n) {
@@ -36,6 +38,12 @@ public class Combine4 {
 
     @Test
     public void test() {
+        int t, x, y;
+        t = 3;
+        x = y = 2;
+        t = (x++) | (++y);
+        System.out.println(t);
+
         combinationSum3(3, 9);
         System.out.println(res);
     }

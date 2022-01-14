@@ -56,9 +56,12 @@ public class NQueen {
     }
     @Test
     public void testRes() {
-        int n = 14;
+        int n = 8;
         List<List<String>> res = solveNQueens(n);
-        System.out.println(res.size());
+        for (List<String> r: res) {
+            System.out.println(r);
+        }
+      System.out.println(res.size());
     }
 
     @Test

@@ -40,4 +40,11 @@ public class HitCounter {
         System.out.println(getHits(300));
 
     }
+    @Test
+    public void test1() {
+        int a = 1;
+        if (a++ >= 2) System.out.println(true);
+        else System.out.println(false);
+        System.out.println(a);
+    }
 }

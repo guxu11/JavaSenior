@@ -53,7 +53,7 @@ public class KthLargestElement {
         int partition = left;
         int index = partition + 1;
         for (int i = index; i <= right; i++) {
-            if (nums[i] < nums[partition]) {
+            if (nums[i] <= nums[partition]) {
                 swap(nums, i, index);
                 index++;
             }

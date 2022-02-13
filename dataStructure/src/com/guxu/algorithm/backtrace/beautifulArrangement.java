@@ -1,9 +1,6 @@
-package com.guxu.algorithm.backtrack;
+package com.guxu.algorithm.backtrace;
 
 import org.testng.annotations.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /*
 leetocde 526. 优美的排列

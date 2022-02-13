@@ -1,11 +1,10 @@
-package com.guxu.algorithm.backtrack;
+package com.guxu.algorithm.backtrace;
 
 import org.testng.annotations.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.TreeMap;
 
 /*
 leetcode 51 N皇后1

@@ -1,7 +1,4 @@
-package com.guxu.algorithm.backtrack;
-
-import org.testng.annotations.Test;
-import java.lang.Math;
+package com.guxu.algorithm.backtrace;
 
 /*
 leetcode 37 解数独

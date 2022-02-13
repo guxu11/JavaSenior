@@ -1,4 +1,4 @@
-package com.guxu.algorithm.backtrack;
+package com.guxu.algorithm.backtrace;
 
 /*
 leetcode 79单词搜索

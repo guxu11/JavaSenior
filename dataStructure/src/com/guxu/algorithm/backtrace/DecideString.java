@@ -1,6 +1,4 @@
-package com.guxu.algorithm.backtrack;
-
-import org.testng.annotations.Test;
+package com.guxu.algorithm.backtrace;
 
 public class DecideString {
     /*

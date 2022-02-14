@@ -9,6 +9,7 @@ import java.util.TreeMap;
 leetcode 1438. 绝对差不超过限制的最长连续子数组
  */
 public class LongestContinuousSubarrayLessThanLimt {
+    // TreeMap
     public int longestSubarray(int[] nums, int limit) {
         int n = nums.length;
         TreeMap<Integer, Integer> treeMap = new TreeMap<>();
@@ -26,6 +27,7 @@ public class LongestContinuousSubarrayLessThanLimt {
         }
         return res;
     }
+
 
     @Test
     public void test() {

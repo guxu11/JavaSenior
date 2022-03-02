@@ -12,21 +12,21 @@ leetcode 46 全排列1， 数组没有重复元素
 public class FullArray {
     private List<List<Integer>> res = new ArrayList<>();
     public List<List<Integer>> permute(int[] nums) {
-        List<Integer> track = new ArrayList<>();
-        backtrack(nums, track);
+        List<Integer> trace = new ArrayList<>();
+        backtrace(nums, trace);
         return res;
     }
 
-    private void backtrack(int[] nums, List<Integer> track) {
-        if (track.size() == nums.length) {
-            res.add(new LinkedList<>(track));
+    private void backtrace(int[] nums, List<Integer> trace) {
+        if (trace.size() == nums.length) {
+            res.add(new LinkedList<>(trace));
             return;
         }
         for (int i = 0; i < nums.length; i++) {
-            if (track.contains(nums[i])) continue;
-            track.add(nums[i]);
-            backtrack(nums, track);
-            track.remove(track.size() - 1);
+            if (trace.contains(nums[i])) continue;
+            trace.add(nums[i]);
+            backtrace(nums, trace);
+            trace.remove(trace.size() - 1);
         }
     }
 

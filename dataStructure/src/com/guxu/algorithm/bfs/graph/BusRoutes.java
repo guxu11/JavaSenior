@@ -11,65 +11,57 @@ public class BusRoutes {
     public int numBusesToDestination(int[][] routes, int source, int target) {
         if (source == target) return 0;
         int n = routes.length;
-        Map<Integer, Integer> indexMap = new HashMap<>();
-        int count = 0;
-        for (int[] route: routes) {
-            for (int v: route) {
-                if (!indexMap.containsKey(v)) {
-                    indexMap.put(v, count);
-                    count++;
-                }
+        Map<Integer, List<Integer>> busRoute = new HashMap<>();
+//        Map<Integer, boolean[]> visited = new HashMap<>();
+        for (int i = 0; i < n; i++) {
+            for (int pos: routes[i]) {
+                if (!busRoute.containsKey(pos)) busRoute.put(pos, new ArrayList<>());
+//                if (!visited.containsKey(pos)) visited.put(pos, new boolean[n]);
+                busRoute.get(pos).add(i);
             }
         }
-        System.out.println(indexMap);
-        int size = indexMap.size();
-        if (size == 0 || !(indexMap.containsKey(source) && indexMap.containsKey(target))) return -1;
-        int[][] graph = new int[size][size];
-        int busId = 1;
-        for (int[] route: routes) {
-            for (int p: route) {
-                int pIndex = indexMap.get(p);
-                for (int q: route) {
-                    int qIndex = indexMap.get(q);
-                    if (p == q) continue;
-                    graph[pIndex][qIndex] = graph[qIndex][pIndex] = busId;
-                }
-            }
-            busId++;
+        if (!busRoute.containsKey(source) || !busRoute.containsKey(target)) return -1;
+        // System.out.println(busRoute);
+        Deque<int[]> queue = new LinkedList<>();
+        for (int bus: busRoute.get(source)) {
+            queue.addLast(new int[]{source, bus, 1});
+//            visited.get(source)[bus] = true;
         }
-        int res = 0;
-        Deque<Integer> queue = new LinkedList<>();
-        queue.addLast(indexMap.get(source));
-        Set<Integer> visited = new HashSet<>();
-//        Set<Integer> boarded = new HashSet<>();
-//        int level = 1;
+        Set<Integer> visitedBus = new HashSet<>();
         while (!queue.isEmpty()) {
-            int level = queue.size();
-            for (int j = 0; j < level; j++) {
-                int currPos = queue.poll();
-                for (int i = 0; i < size; i++) {
-                    if (i == currPos) continue;
-                    int currBusId = graph[currPos][i];
-                    if (currBusId == 0 || visited.contains(i)) continue;
-                    if (i == indexMap.get(target)) return ++res;
-//                    boarded.add(currBusId);
-                    visited.add(i);
-                    queue.addLast(i);
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                int[] currPosAndBus = queue.poll();
+                int currPos = currPosAndBus[0], currBus = currPosAndBus[1], currRes = currPosAndBus[2];
+                visitedBus.add(currBus);
+                for (int pos : routes[currBus]) {
+                    if (pos == target) return currRes;
+                    for (int bus: busRoute.get(pos)) {
+//                        if (!visited.get(pos)[bus]) {
+                            if (bus == currBus) queue.addLast(new int[]{pos, bus, currRes});
+                            else {
+                                if (!visitedBus.contains(bus)){
+                                    queue.addLast(new int[]{pos, bus, currRes+1});
+                                    visitedBus.add(currBus);
+                                }
+                            }
+//                            visited.get(pos)[bus] = true;
+//                        }
                     }
                 }
-            res++;
             }
 
+        }
         return -1;
     }
     @Test
     public void test() {
         int[][] routes = {
-                {1,2,7},
-                {3,6,7}
+                {1,9,12,20,23,24,35,38},{10,21,24,31,32,34,37,38,43},{10,19,28,37},{8},{14,19},{11,17,23,31,41,43,44},{21,26,29,33},{5,11,33,41},{4,5,8,9,24,44}
+
         };
-        int source = 1;
-        int target = 6;
+        int source = 37;
+        int target = 28;
         System.out.println(numBusesToDestination(routes, source, target));
     }
 }

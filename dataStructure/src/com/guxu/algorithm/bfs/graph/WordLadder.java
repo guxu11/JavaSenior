@@ -45,13 +45,72 @@ public class WordLadder {
         return res;
     }
 
+    // 双向bfs
+    String beginword, endword;
+    Set<String> wordlist;
+    public int ladderLength2(String beginWord, String endWord, List<String> wordList) {
+        this.beginword = beginWord;
+        this.endword = endWord;
+        wordlist = new HashSet<>(wordList);
+        if (!wordlist.contains(endWord)) return 0;
+        return bfs();
+    }
+
+    private int bfs() {
+        Queue<String> queue1 = new LinkedList<>();
+        queue1.add(beginword);
+        Queue<String> queue2 = new LinkedList<>();
+        queue2.add(endword);
+        Map<String, Integer> map1 = new HashMap<>();
+        map1.put(beginword, 0);
+        Map<String, Integer> map2 = new HashMap<>();
+        map2.put(endword, 0);
+        while (!queue1.isEmpty() && !queue2.isEmpty()) {
+            int res = 0;
+            if (queue1.size() <= queue2.size()) {
+                res = update(queue1, map1, map2);
+            } else {
+                res = update(queue2, map2, map1);
+            }
+            if (res != 0) return res;
+        }
+        return 0;
+    }
+
+    private int update(Queue<String> queue, Map<String, Integer> map1, Map<String, Integer> map2) {
+        int size = queue.size();
+        for (int i = 0; i < size; i++) {
+            String s = queue.poll();
+            char[] chars = s.toCharArray();
+            int n = s.length();
+            for (int j = 0; j < n; j++) {
+                char c = chars[j];
+                for (char k = 'a'; k <= 'z'; k++) {
+                    if (k == c) continue;
+                    char[] clone = chars.clone();
+                    clone[j] = k;
+                    String newString = new String(clone);
+                    if (map1.containsKey(newString)) continue;
+                    if (!wordlist.contains(newString)) continue;
+                    if (map2.containsKey(newString)) {
+                        return map1.get(s) + 2 + map2.get(newString);
+                    } else {
+                        queue.add(newString);
+                        map1.put(newString, map1.get(s) + 1);
+                    }
+                }
+            }
+        }
+        return 0;
+    }
+
     @Test
     public void test() {
-        List<String> words = Arrays.asList("a", "b","c");
-//        List<String> words = Arrays.asList("hot","dot","dog","lot","log","cog");
-//        String beginWord = "hit", endWord = "cog";
-        String beginWord = "a", endWord = "c";
+//        List<String> words = Arrays.asList("a", "b","c");
+        List<String> words = Arrays.asList("hot","dot","dog","lot","log","cog");
+        String beginWord = "hit", endWord = "cog";
+//        String beginWord = "a", endWord = "c";
 //        System.out.println(beginWord.substring(3));
-        System.out.println(ladderLength(beginWord, endWord, words));
+        System.out.println(ladderLength2(beginWord, endWord, words));
     }
 }

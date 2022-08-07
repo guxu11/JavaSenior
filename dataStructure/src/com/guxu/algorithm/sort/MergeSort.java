@@ -3,6 +3,7 @@ package com.guxu.algorithm.sort;
 import org.testng.annotations.Test;
 
 import java.util.Arrays;
+import java.util.Map;
 
 public class MergeSort {
     public int[] mergeSort(int[] sourceArray) {
@@ -49,5 +50,10 @@ public class MergeSort {
         }
         System.out.println();
 
+    }
+    @Test
+    public void test1() {
+        int a = 3;
+        System.out.println(Math.floor(a / 2));
     }
 }

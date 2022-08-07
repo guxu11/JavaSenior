@@ -42,7 +42,8 @@ public class QuickSort{
         QuickSort qs = new QuickSort();
         int[] arr = {19, 97, 9, 17, 1, 8};
         System.out.println(qs.partition(arr, 0, 5));
-        for (int a: arr) {
+        int[] res = qs.sort(arr);
+        for (int a: res) {
             System.out.print(a + " ");
         }
         System.out.println();
